@@ -466,7 +466,8 @@ write-output ''
 # Compatible with both Windows PowerShell & PowerShell Core
 # Author: Ibne Nahian (@evilprince2009/@anomaly2009)
 #
-#  ___ ___  ___
+# ___ ___  ___
 # | __/ _ \| __|
 # | _| (_) | _|
 # |___\___/|_|
+#
