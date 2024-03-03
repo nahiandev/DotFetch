@@ -3,7 +3,7 @@
 .GUID 1c26142a-da43-4125-9d70-97555cbb1752
 .DESCRIPTION DotFetch is a command-line system information utility for Windows written in PowerShell.
 .AUTHOR Evilprince2009
-.PROJECTURI https://github.com/evilprince2009/DotFetch
+.PROJECTURI https://github.com/anomaly2009/DotFetch
 .COMPANYNAME
 .COPYRIGHT
 .TAGS
@@ -412,7 +412,6 @@ $info.Add(@("Shell", $strings.pwsh))
 $info.Add(@("Terminal", $strings.terminal))
 $info.Add(@("CPU", $strings.cpu))
 
-
 foreach($card in $strings.gpu) {
     if ($card.ToLower() -Match "nvidia") {
         $info.Add(@("GPU (dedicated)", $card))
@@ -420,6 +419,7 @@ foreach($card in $strings.gpu) {
         $info.Add(@("GPU (shared)", $card))
     }
 }
+
 $info.Add(@("Refresh Rate", $strings.refresh_rate))
 $info.Add(@("Memory", $strings.memory))
 $info.Add(@("Disk (C:)", $strings.disk_c))
@@ -464,7 +464,7 @@ if ($logoctr -lt $img.Count) {
 write-output ''
 
 # Compatible with both Windows PowerShell & PowerShell Core
-# Author: Ibne Nahian (@evilprince2009)
+# Author: Ibne Nahian (@evilprince2009/@anomaly2009)
 #
 #  ___ ___  ___
 # | __/ _ \| __|
