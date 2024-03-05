@@ -118,6 +118,7 @@ $strings = @{
     battery = ''
     kernel = ''
     refresh_rate = ''
+    display = ''
 }
 
 # ===== CONFIGURATION =====
@@ -360,6 +361,22 @@ $strings.ip_address = Get-LocalIpAddress
 # ===== Kernel Version =====
 $strings.kernel = [Environment]::OSVersion.Version.ToString()
 
+#Display information
+
+
+function Get-DisplayInfo {
+    $unformatted_info = Get-WmiObject -Class Win32_VideoController | Select-Object -ExpandProperty VideoModeDescription
+
+    $split_index = $unformatted_info.LastIndexOf('x')
+    $display_resulation = $unformatted_info.Substring(0, $split_index).Trim()
+    $colors = $unformatted_info.Substring($split_index + 1).Trim()
+    $formatted_info = "$($display_resulation) | $($colors)"
+
+    return $formatted_info
+}
+
+$strings.display = Get-DisplayInfo
+
 # ===== Battery =====
 function Get-ConnectionStatus {
     $charging_state = (Get-CimInstance win32_battery).batterystatus
@@ -421,6 +438,7 @@ foreach($card in $strings.gpu) {
 }
 
 $info.Add(@("Refresh Rate", $strings.refresh_rate))
+$info.Add(@("Display", $strings.display))
 $info.Add(@("Memory", $strings.memory))
 $info.Add(@("Disk (C:)", $strings.disk_c))
 $info.Add(@("Running as Admin", $strings.admin))
