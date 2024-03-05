@@ -1,5 +1,5 @@
 <#PSScriptInfo
-.VERSION 2.2.0
+.VERSION 3.0
 .GUID 1c26142a-da43-4125-9d70-97555cbb1752
 .DESCRIPTION DotFetch is a command-line system information utility for Windows written in PowerShell.
 .AUTHOR Evilprince2009
