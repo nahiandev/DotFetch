@@ -19,14 +19,12 @@
     DotFetch - Neofetch for Windows in PowerShell 5+
 .DESCRIPTION
     DotFetch is a command-line system information utility for Windows written in PowerShell.
-.PARAMETER image
-    Display a pixelated image instead of the usual logo. Imagemagick required.
-.PARAMETER genconf
-    Download a configuration template. Internet connection required.
 .PARAMETER noimage
     Do not display any image or logo; display information only.
-.PARAMETER help
-    Display this help message.
+
+.PARAMETER genconf
+    Download a configuration template. Internet connection required.
+
 .INPUTS
     System.String
 .OUTPUTS
@@ -37,9 +35,8 @@
 [CmdletBinding()]
 param(
     [string][alias('i')]$image,
-    [switch][alias('g')]$genconf,
     [switch][alias('n')]$noimage,
-    [switch][alias('h')]$help
+    [switch][alias('g')]$genconf
 )
 
 $e = [char]0x1B
@@ -72,15 +69,8 @@ if (-not (Test-Path -Path $config)) {
     [void](New-Item -Path $config -Force)
 }
 
-# ===== DISPLAY HELP =====
-if ($help) {
-    if (Get-Command -Name less -ErrorAction Ignore) {
-        get-help ($MyInvocation.MyCommand.Definition) -full | less
-    } else {
-        get-help ($MyInvocation.MyCommand.Definition) -full
-    }
-    exit 0
-}
+
+
 
 # ===== GENERATE CONFIGURATION =====
 if ($genconf.IsPresent) {
@@ -452,17 +442,28 @@ $info.Add(@("", $colorBar))
 $counter = 0
 $logoctr = 0
 while ($counter -lt $info.Count) {
-    $logo_line = $img[$logoctr]
+    $image_count = $img.Length
+
+    if ($image_count -gt 0) {
+        $logo_line = $img[$logoctr]
+    }
+
+    
+    
     $item_title = "$e[1;34m$($info[$counter][0])$e[0m"
     $item_content = if (($info[$counter][0]) -eq '') {
             $($info[$counter][1])
         } else {
             ": $($info[$counter][1])"
         }
-
-    if ($item_content -notlike '*disabled') {
+        
+    if ($item_content -notlike '*disabled' -and -not $noimage.IsPresent) {
         " ${logo_line}$e[40G${item_title}${item_content}"
     }
+    
+    #elseif ($item_content -notlike '*disabled' -and $noimage.IsPresent) {
+    #    " ${logo_line}$e[2G${item_title}${item_content}"
+   # }
 
     $counter++
     if ($item_content -notlike '*disabled') {
