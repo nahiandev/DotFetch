@@ -2,7 +2,7 @@
 .VERSION 3.0
 .GUID 1c26142a-da43-4125-9d70-97555cbb1752
 .DESCRIPTION DotFetch is a command-line system information utility for Windows written in PowerShell.
-.AUTHOR Evilprince2009
+.AUTHOR Evilprince2009/Anomaly2009
 .PROJECTURI https://github.com/anomaly2009/DotFetch
 .COMPANYNAME
 .COPYRIGHT
