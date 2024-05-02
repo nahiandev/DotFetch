@@ -448,8 +448,6 @@ while ($counter -lt $info.Count) {
         $logo_line = $img[$logoctr]
     }
 
-    
-    
     $item_title = "$e[1;34m$($info[$counter][0])$e[0m"
     $item_content = if (($info[$counter][0]) -eq '') {
             $($info[$counter][1])
