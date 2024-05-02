@@ -369,13 +369,17 @@ $strings.display = Get-DisplayInfo
 
 # ===== Battery =====
 function Get-ConnectionStatus {
+    $battery_charging_state = 'Unplugged'
+
     $charging_state = (Get-CimInstance win32_battery).batterystatus
+    
     if ($charging_state -eq 2) {
-        return 'Connected'
-    } else {
-        return 'Unplugged'
+        $battery_charging_state = 'Connected'
     }
+
+    return $battery_charging_state
 }
+
 $connection_sign = Get-ConnectionStatus
 $strings.battery = (Get-CimInstance -ClassName Win32_Battery | Select-Object -ExpandProperty EstimatedChargeRemaining).ToString() + "% , " + $connection_sign
 
