@@ -341,7 +341,8 @@ $strings.connection = Get-Status
 function Get-LocalIPAddress {
     $address = "127.0.0.1"
     if ($strings.connection -ne 'Offline') {
-        $address = (Invoke-WebRequest -uri "https://api.ipify.org/").Content
+        $ipify = "https://api.ipify.org/"
+        $address = (Invoke-WebRequest -uri $ipify).Content
     }
     return $address
 }
@@ -385,23 +386,28 @@ $strings.battery = (Get-CimInstance -ClassName Win32_Battery | Select-Object -Ex
 
 # ===== PACKAGES =====
 function Get-PackageManager {
-    $_pms = ''
+ #   $_pms = ''
+    $package_managers = @()
 
     if ((Get-Command -Name scoop -ErrorAction Ignore).Name -eq 'scoop.exe') {
-        $_pms += 'scoop '
+ #       $_pms += 'scoop '
+        $package_managers += 'scoop'
     }
     if ((Get-Command -Name winget -ErrorAction Ignore).Name -eq 'winget.exe') {
-        $_pms += 'winget '
+ #       $_pms += 'winget '
+        $package_managers += 'winget'
     }
     
     if ((Get-Command -Name choco -ErrorAction Ignore).Name -eq 'choco.exe') {
-        $_pms += 'choco '
+ #       $_pms += 'choco '
+        $package_managers += 'choco'
     } 
 
-    if ($_pms.Length -eq 0) {
+    if ($package_managers.Count -eq 0) {
         return '(none)'
     } else {
-        return $_pms.Replace(' ', ', ').TrimEnd(', ')
+       # return $_pms.Replace(' ', ', ').TrimEnd(', ')
+       return $package_managers -join ', '
     }
 }
 
