@@ -20,8 +20,8 @@ Follow these simple steps to install DotFetch:
 
 - Set your execution policy to RemoteSigned by running `Set-ExecutionPolicy RemoteSigned` on an Administrative instance of PowerShell. This is required to run DotFetch.
 - Download the files from provided link and extract them.
-- Put the `dotfetch.ps1` inside the `C:\Program Files\WindowsPowerShell\Scripts` directory. Don't worry , there is nothing malicious.
-- Put this directory `C:\Program Files\WindowsPowerShell\Scripts` into path under Environment Variables.
+- Put the `dotfetch.ps1` inside the `C:\Program Files\WindowsPowerShell\Scripts` or `C:\Program Files\PowerShell\Scripts` directory. Alternatively, you can also choose a different directory for the script file. Don't worry , there is nothing malicious.
+- Put the directory (where you copy-pasted the `dotfetch.ps1` file. Exmaple: `C:\Program Files\WindowsPowerShell\Scripts` or `C:\Program Files\PowerShell\Scripts`) into path under Environment Variables.
 - Now open PowerShell , type `notepad $profile` and hit **Enter**.
 - Put below line inside the file and save.
 
