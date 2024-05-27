@@ -12,6 +12,32 @@ DotFetch is a command-line system information utility written in PowerShell for 
 
 ### This is how it looks like
 
+## Fetched Informations
+
+Here is a list of informations that DotFetch currently display.
+
+- Username
+- Computer name
+- Operating system
+- Kernel version
+- Hardware details (Manufacturer & Model)
+- Uptime
+- Installed package managers
+- Shell version
+- Terminal
+- CPU
+- GPU (dedicated)
+- GPU (shared)
+- Display refresh rate
+- Display resulation & color combo
+- Memory (RAM)
+- Memory (OS partition)
+- Shell administrative role
+- Internet access status
+- IP address
+- Available battery status
+- Power Connectivity
+
 ### [Download it here](https://github.com/anomaly2009/DotFetch/blob/main/dotfetch.ps1) 
 
 ### Installation
