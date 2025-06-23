@@ -434,9 +434,9 @@ $info.Add(@("CPU", $strings.cpu))
 
 foreach($card in $strings.gpu) {
     if ($card.ToLower() -Match "nvidia") {
-        $info.Add(@("GPU (dedicated)", $card))
+        $info.Add(@("dGPU", $card))
     } else {
-        $info.Add(@("GPU (shared)", $card))
+        $info.Add(@("iGPU", $card))
     }
 }
 
