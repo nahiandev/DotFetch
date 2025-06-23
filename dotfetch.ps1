@@ -16,7 +16,7 @@
 #>
 <#
 .SYNOPSIS
-    DotFetch - Neofetch for Windows in PowerShell 5+
+    DotFetch - Neofetch alternative for Windows in PowerShell 5+
 .DESCRIPTION
     DotFetch is a command-line system information utility for Windows written in PowerShell.
 .PARAMETER noimage
