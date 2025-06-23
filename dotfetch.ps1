@@ -65,15 +65,12 @@ $is_pscore = if ($PSVersionTable.PSEdition.ToString() -eq 'Core') {
 $configdir = $env:XDG_CONFIG_HOME, "${env:USERPROFILE}\.config" | Select-Object -First 1
 $config = "${configdir}/dotfetch/config.ps1"
 
-$defaultconfig = 'https://github.com/anomaly2009/DotFetch/blob/main/lib/config.ps1'
+$defaultconfig = 'https://github.com/nahiandev/DotFetch/blob/main/lib/config.ps1'
 
 # ensure configuration directory exists
 if (-not (Test-Path -Path $config)) {
     [void](New-Item -Path $config -Force)
 }
-
-
-
 
 # ===== GENERATE CONFIGURATION =====
 if ($genconf.IsPresent) {
@@ -198,7 +195,6 @@ $strings.hostname = $Env:COMPUTERNAME
 # ===== USERNAME =====
 $strings.username = [Environment]::UserName
 
-
 # ===== TITLE =====
 $strings.title = if ($configuration.HasFlag([Configuration]::Show_Title)) {
     "${e}[1;37m{0}${e}[0m@${e}[1;34m{1}${e}[0m" -f $strings['username', 'hostname']
@@ -207,14 +203,12 @@ else {
     $disabled
 }
 
-
 # ===== DASHES =====
 $strings.dashes = if ($configuration.HasFlag([Configuration]::Show_Dashes)) {
     -join $(for ($i = 0; $i -lt ('{0}@{1}' -f $strings['username', 'hostname']).Length; $i++) { '-' })
 } else {
     $disabled
 }
-
 
 # ===== COMPUTER =====
 $strings.computer = if ($configuration.HasFlag([Configuration]::Show_Computer)) {
@@ -223,7 +217,6 @@ $strings.computer = if ($configuration.HasFlag([Configuration]::Show_Computer)) 
 } else {
     $disabled
 }
-
 
 # ===== UPTIME =====
 $strings.uptime = if ($configuration.HasFlag([Configuration]::Show_Uptime)) {
@@ -240,7 +233,6 @@ $strings.uptime = if ($configuration.HasFlag([Configuration]::Show_Uptime)) {
 }
 
 # ======= Refresh Rate =======
-
 function Get-RefreshRate {
     return "$((Get-CimInstance -ClassName Win32_VideoController | Select-Object -Property CurrentRefreshRate).CurrentRefreshRate)Hz"
 }
@@ -340,7 +332,6 @@ function Get-Status {
 $strings.connection = Get-Status
 
 # ===== IP Address =====
-
 function Get-LocalIPAddress {
     $address = "127.0.0.1"
     if ($strings.connection -ne 'Offline') {
@@ -356,8 +347,6 @@ $strings.ip_address = Get-LocalIpAddress
 $strings.kernel = [Environment]::OSVersion.Version.ToString()
 
 #Display information
-
-
 function Get-DisplayInfo {
     $unformatted_info = Get-WmiObject -Class Win32_VideoController | Select-Object -ExpandProperty VideoModeDescription
 
@@ -389,27 +378,21 @@ $strings.battery = (Get-CimInstance -ClassName Win32_Battery | Select-Object -Ex
 
 # ===== PACKAGES =====
 function Get-PackageManager {
- #   $_pms = ''
     $package_managers = @()
-
     if ((Get-Command -Name scoop -ErrorAction Ignore).Name -eq 'scoop.exe') {
- #       $_pms += 'scoop '
         $package_managers += 'scoop'
     }
     if ((Get-Command -Name winget -ErrorAction Ignore).Name -eq 'winget.exe') {
- #       $_pms += 'winget '
         $package_managers += 'winget'
     }
     
     if ((Get-Command -Name choco -ErrorAction Ignore).Name -eq 'choco.exe') {
- #       $_pms += 'choco '
         $package_managers += 'choco'
     } 
 
     if ($package_managers.Count -eq 0) {
         return '(none)'
     } else {
-       # return $_pms.Replace(' ', ', ').TrimEnd(', ')
        return $package_managers -join ', '
     }
 }
@@ -472,10 +455,6 @@ while ($counter -lt $info.Count) {
         " ${logo_line}$e[40G${item_title}${item_content}"
     }
     
-    #elseif ($item_content -notlike '*disabled' -and $noimage.IsPresent) {
-    #    " ${logo_line}$e[2G${item_title}${item_content}"
-   # }
-
     $counter++
     if ($item_content -notlike '*disabled') {
         $logoctr++
@@ -494,7 +473,7 @@ if ($logoctr -lt $img.Count) {
 write-output ''
 
 # Compatible with both Windows PowerShell & PowerShell Core
-# Author: Ibne Nahian (@evilprince2009/@anomaly2009)
+# Author: Ibne Nahian (@nahiandev)
 #
 # ___ ___  ___
 # | __/ _ \| __|
