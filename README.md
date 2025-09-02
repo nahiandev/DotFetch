@@ -26,8 +26,8 @@ Here is a list of informations that DotFetch currently display.
 - Shell version
 - Terminal
 - CPU
-- GPU (dedicated)
-- GPU (shared)
+- dGPU 
+- iGPU 
 - Display refresh rate
 - Display resulation & color combo
 - Memory (RAM)
@@ -62,5 +62,5 @@ dotfetch
 ### Hire me for your Web and Automation projects
 
 - #### [Portfolio](https://evilprince2009.netlify.app/)
-- #### [LinkedIn](https://www.linkedin.com/in/evilprince2009/)
+- #### [LinkedIn](https://www.linkedin.com/in/nahiandev/)
 - #### [Upwork](https://www.upwork.com/freelancers/~01ded0be5baccfa296)
